@@ -1048,20 +1048,31 @@ a {
 }
 
 .partners-section {
+  position: relative;
+  overflow: hidden;
   padding: 72px 0 88px;
-  border-block: 1px solid rgba(16, 38, 79, .06);
-  background: linear-gradient(180deg, #f7faff 0%, #fff 100%);
+  border-block: 1px solid rgba(255, 255, 255, .08);
+  background:
+    radial-gradient(ellipse at 15% 15%, rgba(23, 105, 255, .30), transparent 35%),
+    radial-gradient(ellipse at 88% 85%, rgba(0, 194, 255, .16), transparent 30%),
+    linear-gradient(125deg, #0055fd, #102b5a 58%, #0055fd);
 }
 
 .partners-heading {
+  position: relative;
+  z-index: 1;
   max-width: 850px;
   margin: 0 auto 34px;
   text-align: center;
 }
 
+.partners-heading .section-kicker {
+  color: #8eb8ff;
+}
+
 .partners-heading h2 {
   margin-top: 8px;
-  color: var(--navy);
+  color: #fff;
   font-size: clamp(28px, 3.5vw, 42px);
   line-height: 1.45;
 }
@@ -1069,68 +1080,103 @@ a {
 .partners-heading p {
   max-width: 780px;
   margin: 12px auto 0;
-  color: var(--muted);
+  color: rgba(235, 243, 255, .76);
   font-size: 15px;
   line-height: 2;
 }
 
-.partners-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 20px;
+.partners-carousel {
+  position: relative;
+  z-index: 1;
+  padding: 30px 30px 22px;
+  border: 1px solid rgba(255, 255, 255, .14);
+  border-radius: 30px;
+  background: rgba(255, 255, 255, .055);
+  box-shadow: 0 28px 80px rgba(0, 8, 28, .25);
+  backdrop-filter: blur(12px);
+}
+
+.partners-swiper {
+  overflow: hidden;
+  padding: 6px 2px;
+}
+
+.partners-swiper-row + .partners-swiper-row {
+  margin-top: 16px;
+}
+
+.partners-swiper .swiper-wrapper {
+  transition-timing-function: linear !important;
+}
+
+.partner-slide {
+  height: auto;
+  padding: 4px 2px;
 }
 
 .partner-card {
-  min-height: 210px;
+  position: relative;
+  min-height: 250px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 18px;
-  padding: 28px;
-  border: 1px solid rgba(16, 38, 79, .08);
-  border-radius: 8px;
-  background: #fff;
-  box-shadow: 0 14px 38px rgba(20, 56, 120, .06);
-  transition: transform .3s ease, box-shadow .3s ease, border-color .3s ease;
+  gap: 15px;
+  padding: 30px 20px 24px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, .78);
+  border-radius: 24px;
+  background: linear-gradient(150deg, #fff, #f4f8ff);
+  box-shadow: 0 18px 40px rgba(0, 14, 45, .15);
+  transition: transform .35s ease, box-shadow .35s ease, border-color .35s ease;
+}
+
+.partner-card::before {
+  position: absolute;
+  inset: 0 0 auto;
+  height: 5px;
+  background: linear-gradient(90deg, #65d5ff, #1769ff);
+  content: "";
+}
+
+.partners-swiper .swiper-slide-active .partner-card {
+  border-color: rgba(142, 184, 255, .7);
+  box-shadow: 0 24px 55px rgba(0, 8, 28, .25);
 }
 
 .partner-card:hover {
-  transform: translateY(-6px);
-  border-color: rgba(0, 85, 253, .18);
-  box-shadow: 0 20px 42px rgba(20, 56, 120, .11);
+  transform: translateY(-5px);
+  border-color: rgba(23, 105, 255, .28);
+  box-shadow: 0 24px 48px rgba(0, 14, 45, .18);
+}
+
+.partner-card-label {
+  align-self: flex-start;
+  padding: 6px 12px;
+  border: 1px solid rgba(23, 105, 255, .10);
+  border-radius: 999px;
+  color: #1769ff;
+  background: #edf4ff;
+  font-size: 11px;
+  font-weight: 800;
 }
 
 .partner-logo {
   display: block;
-  width: min(100%, 220px);
-  height: 86px;
+  width: min(100%, 230px);
+  height: 100px;
   object-fit: contain;
-  animation: partner-float 3.4s ease-in-out infinite;
 }
 
 .partner-card h3 {
   color: var(--navy);
-  font-size: 15px;
+  font-size: 16px;
   font-weight: 800;
 }
 
-.partner-card:nth-child(2) .partner-logo {
-  animation-delay: .5s;
-}
-
-.partner-card:nth-child(3) .partner-logo {
-  animation-delay: 1s;
-}
-
-@keyframes partner-float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-4px); }
-}
-
 @media (prefers-reduced-motion: reduce) {
-  .partner-logo {
-    animation: none;
+  .partner-card {
+    transition: none;
   }
 }
 
@@ -1139,14 +1185,24 @@ a {
     padding: 58px 0 68px;
   }
 
-  .partners-grid {
-    grid-template-columns: 1fr;
-    gap: 14px;
+  .partners-carousel {
+    padding: 20px 14px 16px;
+    border-radius: 24px;
   }
 
   .partner-card {
-    min-height: 170px;
+    min-height: 215px;
+    padding: 24px 18px 20px;
   }
+
+  .partner-logo {
+    height: 86px;
+  }
+
+  .partner-card h3 {
+    font-size: 14px;
+  }
+
 }
 
 .about-card {

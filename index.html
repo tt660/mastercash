@@ -12,6 +12,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,400,0,0" rel="stylesheet">
   <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11.2.10/swiper-bundle.min.css" />
 </head>
 <body>
 
@@ -271,23 +272,65 @@
           <span class="section-kicker">شركاء النجاح</span>
           <h2 id="partners-title">شراكات قوية… لنصنع تجربة دفع أسهل وأسرع</h2>
           <p>
-            نفخر بشراكتنا مع أورنج- فوري- وبساطة- ونعمل مع شركائنا جنبا إلى جنب لتقديم حلول دفع إلكتروني موثوقة- سريعة- ومتطورة- تجمع بين قوة التكامل وبساطة الاستخدام- لنمنح عملاءنا تجربة دفع أكثر سهولة وأماناً.
+            نفخر بشراكتنا مع أورنج وفوري وبساطة وفودافون وإي آند والبنك الأهلي المصري ونعمل مع شركائنا جنباً إلى جنب لتقديم حلول دفع إلكتروني موثوقة وسريعة ومتطورة.
           </p>
         </div>
 
-        <div class="partners-grid">
-          <article class="partner-card reveal">
-            <img class="partner-logo" src="orange.svg" alt="شعار أورنج" />
-            <h3>أورنج</h3>
-          </article>
-          <article class="partner-card reveal">
-            <img class="partner-logo" src="fawry.svg" alt="شعار فوري" />
-            <h3>فوري</h3>
-          </article>
-          <article class="partner-card reveal">
-            <img class="partner-logo" src="basata.svg" alt="شعار بساطة" />
-            <h3>بساطة</h3>
-          </article>
+        <div class="partners-carousel" role="region" aria-label="شركاء النجاح">
+          <div class="partners-swiper-row" aria-label="الشركاء من أورنج إلى بساطة">
+            <div class="swiper partners-swiper partners-swiper-top">
+              <div class="swiper-wrapper">
+                <article class="swiper-slide partner-slide">
+                  <div class="partner-card">
+                    <span class="partner-card-label">شريك نجاح</span>
+                    <img class="partner-logo" src="orange.svg" alt="شعار أورنج" />
+                    <h3>أورنج</h3>
+                  </div>
+                </article>
+                <article class="swiper-slide partner-slide">
+                  <div class="partner-card">
+                    <span class="partner-card-label">شريك نجاح</span>
+                    <img class="partner-logo" src="fawry.svg" alt="شعار فوري" />
+                    <h3>فوري</h3>
+                  </div>
+                </article>
+                <article class="swiper-slide partner-slide">
+                  <div class="partner-card">
+                    <span class="partner-card-label">شريك نجاح</span>
+                    <img class="partner-logo" src="basata.svg" alt="شعار بساطة" />
+                    <h3>بساطة</h3>
+                  </div>
+                </article>
+              </div>
+            </div>
+          </div>
+          <div class="partners-swiper-row" aria-label="الشركاء من فودافون إلى البنك الأهلي">
+            <div class="swiper partners-swiper partners-swiper-bottom">
+              <div class="swiper-wrapper">
+                <article class="swiper-slide partner-slide">
+                  <div class="partner-card">
+                    <span class="partner-card-label">شريك نجاح</span>
+                    <img class="partner-logo" src="vodafone.svg" alt="شعار فودافون" />
+                    <h3>فودافون</h3>
+                  </div>
+                </article>
+                <article class="swiper-slide partner-slide">
+                  <div class="partner-card">
+                    <span class="partner-card-label">شريك نجاح</span>
+                    <img class="partner-logo" src="etisalat.svg" alt="شعار اتصالات إي آند" />
+                    <h3>اتصالات إي آند</h3>
+                  </div>
+                </article>
+                <article class="swiper-slide partner-slide">
+                  <div class="partner-card">
+                    <span class="partner-card-label">شريك نجاح</span>
+                    <img class="partner-logo" src="nbe.svg" alt="شعار البنك الأهلي المصري" />
+                    <h3>البنك الأهلي المصري</h3>
+                  </div>
+                </article>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -364,6 +407,7 @@
   </footer>
 
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11.2.10/swiper-bundle.min.js"></script>
   <script src="script.js"></script>
 </body>
 </html>

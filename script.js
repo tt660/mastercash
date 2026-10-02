@@ -97,6 +97,76 @@ const revealObserver = new IntersectionObserver(
 
 document.querySelectorAll(".reveal").forEach(el => revealObserver.observe(el));
 
+const partnersSwiperElements = [...document.querySelectorAll(".partners-swiper")];
+
+if (partnersSwiperElements.length && !window.Swiper) {
+  console.error("SwiperJS failed to load; the partner carousels were not initialized.");
+}
+
+if (partnersSwiperElements.length && window.Swiper) {
+  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+  let userPaused = reducedMotion.matches;
+  const partnersSwipers = partnersSwiperElements.map((element, index) => {
+    const wrapper = element.querySelector(".swiper-wrapper");
+    const originalSlides = [...wrapper.children];
+    originalSlides.forEach(slide => {
+      const duplicate = slide.cloneNode(true);
+      duplicate.setAttribute("aria-hidden", "true");
+      duplicate.querySelectorAll("img").forEach(image => {
+        image.alt = "";
+      });
+      wrapper.append(duplicate);
+    });
+
+    return new Swiper(element, {
+      loop: true,
+      grabCursor: true,
+      init: !userPaused && !document.hidden,
+      autoplay: {
+        delay: 0,
+        reverseDirection: index === 1,
+        disableOnInteraction: false,
+        pauseOnMouseEnter: true
+      },
+      speed: 7000,
+      breakpoints: {
+        0: { slidesPerView: 1.2, spaceBetween: 14, speed: 4500 },
+        540: { slidesPerView: 2, spaceBetween: 18, speed: 6000 },
+        900: { slidesPerView: 3, spaceBetween: 24, speed: 7000 }
+      }
+    });
+  });
+
+  const syncAutoplay = () => {
+    partnersSwipers.forEach(swiper => {
+      if (!swiper.initialized) {
+        if (!userPaused && !document.hidden) swiper.init();
+      } else if (userPaused || document.hidden) {
+        swiper.autoplay.stop();
+      } else {
+        swiper.autoplay.start();
+      }
+    });
+  };
+
+  partnersSwiperElements.forEach(element => {
+    element.addEventListener("focusin", () => {
+      partnersSwipers.forEach(swiper => swiper.autoplay.stop());
+    });
+
+    element.addEventListener("focusout", event => {
+      if (!element.contains(event.relatedTarget)) syncAutoplay();
+    });
+  });
+
+  document.addEventListener("visibilitychange", syncAutoplay);
+  reducedMotion.addEventListener("change", event => {
+    userPaused = event.matches;
+    syncAutoplay();
+  });
+
+  syncAutoplay();
+}
 
 
 document.addEventListener("click", event => {
